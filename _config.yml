@@ -7,12 +7,18 @@ author:
 keywords:
 description:
 
+company: Rakefire LLC
+address_1: 29 East Carpenter
+address_2: Athens, OH 45701
+
+phone: (440) 223-5715
+
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://www.rakefire.io" # the base hostname & protocol for your site
 social:
-  twitter: rakefire
+  twitter:  rakefire
   facebook: hirerakefire
-  github:  rakefire
+  github:   rakefire
 
 # Build settings
 markdown: kramdown
