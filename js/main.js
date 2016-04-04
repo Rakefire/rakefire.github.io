@@ -1,4 +1,48 @@
-;
+var weeksSinceFounding = function() {
+  founding = new Date(2015, 10, 6)
+  today = new Date()
+  //Get 1 day in milliseconds
+  one_day = 1000*60*60*24
+
+  daysSinceFounding = (today.getTime() - founding.getTime()) / (one_day)
+
+  return daysSinceFounding / 7;
+}
+
+var ozToGallons = function(oz) {
+  return Math.floor(oz / 8 / 16);
+}
+
+var ozToCups = function(oz) {
+  return Math.floor(oz / 6.0);
+}
+
+
+var setGallonsOfCoffee = function() {
+  averageDailyOz = 32
+  days = 6
+  people = 2
+
+  gallons = ozToGallons(averageDailyOz * days * people * weeksSinceFounding());
+
+  $("#gallons-of-coffee").data('to', gallons);
+  console.log("set!");
+}
+
+var setCupsOfTea = function() {
+  averageDailyOz = 16
+  days = 6
+  people = 1
+
+  cups = ozToCups(averageDailyOz * days * people * weeksSinceFounding())
+
+  $("#cups-of-tea").data('to', cups)
+}
+
+setCupsOfTea();
+setGallonsOfCoffee();
+
+
 (function() {
 
   'use strict';
