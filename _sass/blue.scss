@@ -3,7 +3,7 @@
 $font-primary: 'Source Sans Pro', Arial, sans-serif;
 
 // Overrides
-$grid-gutter-width: 40px !default; 
+$grid-gutter-width: 40px !default;
 $border-radius-base:  4px !default;
 $padding-base-vertical: 14px !default;
 
@@ -70,7 +70,7 @@ $form-group-margin-bottom:       30px !default;
 }
 
 @mixin icomoon() {
-	
+
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -82,10 +82,10 @@ $form-group-margin-bottom:       30px !default;
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	
+
 }
 
-// Import 
+// Import
 @import 'bootstrap/mixins';
 @import 'bootstrap/variables';
 
@@ -94,7 +94,7 @@ $form-group-margin-bottom:       30px !default;
 
 /* =======================================================
 *
-* 	Template Style 
+* 	Template Style
 *	Edit this section
 *
 * ======================================================= */
@@ -110,7 +110,7 @@ body {
 	background: $brand-bg-color;
 	height: 100%;
 	position: relative;
-	
+
 }
 a {
 	color: $brand-primary;
@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-#fh5co-header {
+#header {
 	// position: relative;
 	position: absolute;
 	z-index: 99;
@@ -272,7 +272,7 @@ h1, h2, h3, h4, h5, h6 {
 		font-weight: 700;
 		padding-left: 0;
 		color: $brand-white;
-		
+
 	}
 	&.navbar-fixed-top {
 		position: fixed!important;
@@ -316,7 +316,7 @@ h1, h2, h3, h4, h5, h6 {
 		border: transparent;
 		background: transparent;
 		@include border-radius(0px);
-		
+
 		// padding-right: 30px;
 		// padding-left: 10px;
 
@@ -325,7 +325,7 @@ h1, h2, h3, h4, h5, h6 {
 			padding-right: 0px;
 			padding-left: 0px;
 		}
-		
+
 
 		.brand-slogan {
 			margin: 28px 0 0 15px;
@@ -337,7 +337,7 @@ h1, h2, h3, h4, h5, h6 {
 				font-style: normal;
 			}
 		}
-		
+
 	}
 	a {
 		@include transition(.0s);
@@ -391,18 +391,18 @@ h1, h2, h3, h4, h5, h6 {
 	@include transition(.3s);
 }
 
-#fh5co-our-services,
-#fh5co-about-us,
-#fh5co-features,
-#fh5co-testimonials,
-#fh5co-pricing,
-#fh5co-press {
+#our-services,
+#about-us,
+#features,
+#testimonials,
+#pricing,
+#press {
 	padding: 7em 0;
 	@media screen and (max-width: $screen-xs) {
 		padding: 5em 0;
 	}
 }
-#fh5co-testimonials {
+#testimonials {
 	background: $brand-primary;
 	.section-heading {
 		h2 {
@@ -432,7 +432,7 @@ h1, h2, h3, h4, h5, h6 {
 			border-left: none;
 			padding: 40px;
 			background: $brand-white;
-			
+
 			position: relative;
 			@include border-radius(4px);
 			&:after {
@@ -441,9 +441,9 @@ h1, h2, h3, h4, h5, h6 {
 			   top: 100%;
 			   left: 40px;
 			   border-top: 15px solid black;
-			   border-top-color: $brand-white; 
+			   border-top-color: $brand-white;
 			   border-left: 15px solid transparent;
-			   border-right: 15px solid transparent; 
+			   border-right: 15px solid transparent;
 			}
 			.quote {
 				position: absolute;
@@ -481,7 +481,7 @@ h1, h2, h3, h4, h5, h6 {
 		}
 	}
 }
-#fh5co-pricing {
+#pricing {
 	.price-box {
 	    border: 2px solid #ECEEF0;
 	    text-align: center;
@@ -508,9 +508,9 @@ h1, h2, h3, h4, h5, h6 {
 				   left: 50%;
 				   margin-left: -10px;
 				   border-top: 10px solid black;
-				   border-top-color: $brand-primary; 
+				   border-top-color: $brand-primary;
 				   border-left: 10px solid transparent;
-				   border-right: 10px solid transparent; 
+				   border-right: 10px solid transparent;
 				}
 	    	}
 	    }
@@ -546,12 +546,12 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
-#fh5co-our-services,
-#fh5co-press {
+#our-services,
+#press {
 	background: #f4f4f4;
 }
-#fh5co-our-services {
-	
+#our-services {
+
 	.box {
 		// min-height: 360px;
 		padding: 30px;
@@ -624,15 +624,15 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
-#fh5co-features {
+#features {
 	padding: 7em 0;
 	@media screen and (max-width: $screen-sm) {
 		padding: 4em 0;
 	}
-	.fh5co-service {
+	.service {
 		margin-bottom: 30px;
 		float: left;
-		.fh5co-icon {
+		.icon {
 			float: left;
 			width: 20%;
 			// border: 1px solid red;
@@ -641,7 +641,7 @@ h1, h2, h3, h4, h5, h6 {
 				color: $brand-primary;
 			}
 		}
-		.fh5co-desc {
+		.desc {
 			width: 80%;
 			// border: 1px solid red;
 			float:right;
@@ -652,8 +652,8 @@ h1, h2, h3, h4, h5, h6 {
 		}
 	}
 }
-#fh5co-press {
-	.fh5co-press-item {
+#press {
+	.press-item {
 		background: $brand-white;
 		float: left;
 		margin-bottom: 30px;
@@ -664,8 +664,8 @@ h1, h2, h3, h4, h5, h6 {
 		@media screen and (max-width: $screen-xs) {
 			display: block!important;
 		}
-		.fh5co-press-text,
-		.fh5co-press-img {
+		.press-text,
+		.press-img {
 			width: 50%;
 			@media screen and (max-width: $screen-xs) {
 				height: inherit;
@@ -674,18 +674,18 @@ h1, h2, h3, h4, h5, h6 {
 				display: block!important;
 			}
 		}
-		.fh5co-press-text {
+		.press-text {
 			float: left;
 			padding: 20px;
-			.fh5co-press-title {
-		
+			.press-title {
+
 				margin: 0 0 20px 0;
 				padding: 0 0 10px 0;
 				font-weight: 400;
 				font-size: 20px;
 				color: $brand-darker;
 				position: relative;
-				.fh5co-border {
+				.border {
 					position: absolute;
 					left: 0;
 					bottom: 0;
@@ -695,7 +695,7 @@ h1, h2, h3, h4, h5, h6 {
 				}
 			}
 		}
-		.fh5co-press-img {
+		.press-img {
 			position: absolute;
 			right: 0;
 			bottom: 0;
@@ -713,7 +713,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // Burger Menu
-.fh5co-nav-toggle {
+.nav-toggle {
   width:25px;
   height:25px;
   cursor: pointer;
@@ -750,22 +750,22 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.fh5co-nav-toggle i::before {
+.nav-toggle i::before {
   top: -7px;
 }
-.fh5co-nav-toggle i::after {
+.nav-toggle i::after {
   bottom: -7px;
 }
-.fh5co-nav-toggle:hover i::before {
+.nav-toggle:hover i::before {
   top: -10px;
 }
-.fh5co-nav-toggle:hover i::after {
+.nav-toggle:hover i::after {
   bottom: -10px;
 }
-.fh5co-nav-toggle.active i {
+.nav-toggle.active i {
 	background: transparent;
 }
-.fh5co-nav-toggle.active i::before {
+.nav-toggle.active i::before {
   top:0;
   -webkit-transform: rotateZ(45deg);
      -moz-transform: rotateZ(45deg);
@@ -773,7 +773,7 @@ h1, h2, h3, h4, h5, h6 {
        -o-transform: rotateZ(45deg);
           transform: rotateZ(45deg);
 }
-.fh5co-nav-toggle.active i::after {
+.nav-toggle.active i::after {
   bottom:0;
   -webkit-transform: rotateZ(-45deg);
      -moz-transform: rotateZ(-45deg);
@@ -781,7 +781,7 @@ h1, h2, h3, h4, h5, h6 {
        -o-transform: rotateZ(-45deg);
           transform: rotateZ(-45deg);
 }
-.fh5co-nav-toggle {
+.nav-toggle {
   position: absolute;
   top: 12px;
   right: 0px;
@@ -977,7 +977,7 @@ h1, h2, h3, h4, h5, h6 {
 		left: 10px;
 		i:before {
 			color: rgba(255,255,255,1);
-		
+
 		}
 	}
 }
@@ -988,12 +988,12 @@ h1, h2, h3, h4, h5, h6 {
 	}
 	&:hover {
 		i {
-			color: $brand-black;		
+			color: $brand-black;
 		}
 	}
 }
-.owl-carousel-fullwidth.fh5co-light-arrow .owl-controls .owl-nav .owl-next,
-.owl-carousel-fullwidth.fh5co-light-arrow .owl-controls .owl-nav .owl-prev {
+.owl-carousel-fullwidth.light-arrow .owl-controls .owl-nav .owl-next,
+.owl-carousel-fullwidth.light-arrow .owl-controls .owl-nav .owl-prev {
 	i {
 		color: $brand-white;
 	}
@@ -1027,7 +1027,7 @@ h1, h2, h3, h4, h5, h6 {
 	text-align: center;
 }
 .owl-carousel-fullwidth.owl-theme .owl-dots {
-	bottom: 0;	
+	bottom: 0;
 	margin-bottom: 2.5em;
 }
 .owl-theme .owl-dots .owl-dot span {
@@ -1048,9 +1048,9 @@ h1, h2, h3, h4, h5, h6 {
 	border: 2px solid #fff;
 }
 .owl-carousel-fullwidth {
-	
 
-	.item, .fh5co-owl-text-wrap {
+
+	.item, .owl-text-wrap {
 		height: 800px;
 		display: table;
 		width: 100%;
@@ -1059,12 +1059,12 @@ h1, h2, h3, h4, h5, h6 {
 			padding: 5em 0;
 		}
 	}
-	.fh5co-owl-text-wrap {
+	.owl-text-wrap {
 		position: relative;
 		// bottom: -5em;
 	}
 	.item {
-		
+
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: top left;
@@ -1081,7 +1081,7 @@ h1, h2, h3, h4, h5, h6 {
 		img {
 			max-width: 100%;
 		}
-		
+
 		.iphone-image {
 			position: relative;
 			z-index: 99;
@@ -1102,10 +1102,10 @@ h1, h2, h3, h4, h5, h6 {
 				}
 			}
 		}
-	
-		
 
-		.fh5co-owl-text {
+
+
+		.owl-text {
 			display: table-cell;
 			vertical-align: middle;
 			z-index: 10;
@@ -1122,12 +1122,12 @@ h1, h2, h3, h4, h5, h6 {
 					border-bottom: 1px solid rgba(255,255,255,1);
 				}
 			}
-			.fh5co-lead, .fh5co-lead-2, .fh5co-sub-lead {
+			.lead, .lead-2, .sub-lead {
 				color: $brand-white;
 				margin: 0;
 				padding: 0;
 			}
-			.fh5co-lead {
+			.lead {
 				font-weight: 700;
 				margin-bottom: 20px;
 				margin-top: 0;
@@ -1144,8 +1144,8 @@ h1, h2, h3, h4, h5, h6 {
 					line-height: 30px;
 				}
 			}
-			
-			.fh5co-sub-lead {
+
+			.sub-lead {
 				font-size: 30px;
 				line-height: 30px;
 				line-height: 42px;
@@ -1185,17 +1185,17 @@ h1, h2, h3, h4, h5, h6 {
 	padding-bottom: 4em;
 	@media screen and (max-width: $screen-sm ) {
 		padding-bottom: 2em;
-	}	
+	}
 }
 .row-bottom-padded-sm {
 	padding-bottom: 2em;
 	@media screen and (max-width: $screen-sm ) {
 		padding-bottom: 2em;
-	}	
+	}
 }
 
 // Menu Animate
-.fh5co-animated {
+.animated {
   -webkit-animation-duration: .3s;
   animation-duration: .3s;
   -webkit-animation-fill-mode: both;
