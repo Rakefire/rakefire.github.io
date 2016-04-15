@@ -22,6 +22,8 @@ social:
   facebook: hirerakefire
   github:   rakefire
 
+testimonials: false
+
 # Build settings
 markdown: kramdown
 sass:

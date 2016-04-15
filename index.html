@@ -63,7 +63,7 @@ layout: page
 
 {% include sections/work.html %}
 
-{% include sections/testimonials.html %}
+{% if site.testimonials %}{% include sections/testimonials.html %}{% endif %}
 
 {% include sections/services.html %}
 
