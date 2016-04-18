@@ -22,9 +22,11 @@ social:
   facebook: hirerakefire
   github:   rakefire
 
+#Features
 testimonials: false
 
 # Build settings
+permalinks: pretty
 markdown: kramdown
 sass:
   style: compressed
