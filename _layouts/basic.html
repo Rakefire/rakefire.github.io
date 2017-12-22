@@ -1,0 +1,30 @@
+---
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ page.title }}</title>
+
+    <script src="/js/jquery.min.js"></script>
+    {% if page.rotate_degrees != null %}
+      <script>
+        window.rotateDegrees = {{ page.rotate_degrees }};
+
+        $(document).ready(function(e) {
+          // Perform the rotation
+          if (window.rotateDegrees != null) {
+            console.log("Rotate " + window.rotateDegrees);
+            document.body.setAttribute( "style", "transform: rotate(" + window.rotateDegrees + "deg);");
+          }
+        });
+      </script>
+    {% endif %}
+    <!-- script src="/js/page-rotator.js"></script -->
+  </head>
+
+  <body class="{{ page.name | remove: '.html' }}">
+    <div class="container">
+      {{ content }}
+    </div>
+  </body>
+</html>
