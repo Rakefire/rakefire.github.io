@@ -1,8 +1,6 @@
 # Site settings
 title: Rakefire
 email: contact@rakefire.io
-description: > # this means to ignore newlines until "baseurl:"
-  Web application consultancy with experts in Athens, OH and San Franscisco, CA.
 author:
 keywords: ruby on rails, web application development, web app, ohio, static web sites, jekyll, code, entrepreneur
 description: Developing web applications with Ruby on Rails is what we like to do most.
