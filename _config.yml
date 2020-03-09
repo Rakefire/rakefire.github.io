@@ -32,3 +32,8 @@ markdown: kramdown
 sass:
   style: compressed
   sass_dir: _sass
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-coffeescript
