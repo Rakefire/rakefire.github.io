@@ -1,9 +1,10 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
+ruby file: ".ruby-version"
 
-gem 'jekyll'
+gem "jekyll"
 
 group :jekyll_plugins do
-  gem 'jekyll-sitemap'
-  gem 'jekyll-feed'
-  gem 'jekyll-coffeescript'
+  gem "jekyll-sitemap"
+  gem "jekyll-feed"
+  gem "jekyll-coffeescript"
 end
