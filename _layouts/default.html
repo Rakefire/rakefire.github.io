@@ -2,16 +2,13 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
   {% include head.html %}
 
   <body class="{{ page.name | remove: '.html' }}">
-    {% include header.html %}
-
-    {{ content }}
-
-    {% include footer.html %}
-
-    {% include javascript.html %}
+    {% include header.html %} {{ content }} {% include footer.html %} {% include
+    javascript.html %}
   </body>
 </html>
