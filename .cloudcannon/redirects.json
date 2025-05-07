@@ -1,0 +1,44 @@
+{
+  "routes": [
+    {
+      "from": "/stoked/early-access",
+      "to": "https://calendar.app.google/xXUT5pLoAFmMrAhh8",
+      "status": 302
+    },
+    {
+      "from": "/stoked/your-experify-experience",
+      "to": "https://calendar.app.google/3nq485dvdRdWd9qx7",
+      "status": 302
+    },
+    {
+      "from": "/ricky/15-minutes",
+      "to": "https://calendar.app.google/LHzdFNHEojSszdaS7",
+      "status": 302
+    },
+    {
+      "from": "/ricky/30-minutes",
+      "to": "https://calendar.app.google/54Ptw1bFVErsToYJ8",
+      "status": 302
+    },
+    {
+      "from": "/ricky/45-minutes",
+      "to": "https://calendar.app.google/bFEYvsHNKX23kz67A",
+      "status": 302
+    },
+    {
+      "from": "/ricky/60-minutes",
+      "to": "https://calendar.app.google/g2Pk4vfif8LYAen6A",
+      "status": 302
+    },
+    {
+      "from": "/ricky/90-minutes",
+      "to": "https://calendar.app.google/cH6TLjpLtrttFRgBA",
+      "status": 302
+    },
+    {
+      "from": "/causey/demo",
+      "to": "https://calendly.com/ricky-causey/demo",
+      "status": 302
+    }
+  ]
+}
