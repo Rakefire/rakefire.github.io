@@ -5,7 +5,7 @@ class CloudannonRedirectsGenerate
 
   def output!
     FileUtils.mkdir_p(".cloudcannon")
-    File.write(".cloudcannon/redirects.json", JSON.pretty_generate(output))
+    File.write(".cloudcannon/routing.json", JSON.pretty_generate(output))
   end
 
   private
