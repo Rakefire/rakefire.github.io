@@ -74,6 +74,8 @@ GEM
       coffee-script-source (~> 1.12)
     jekyll-feed (0.17.0)
       jekyll (>= 3.7, < 5.0)
+    jekyll-redirect-from (0.16.0)
+      jekyll (>= 3.3, < 5.0)
     jekyll-sass-converter (3.1.0)
       sass-embedded (~> 1.75)
     jekyll-sitemap (1.4.0)
@@ -171,6 +173,7 @@ DEPENDENCIES
   jekyll
   jekyll-coffeescript
   jekyll-feed
+  jekyll-redirect-from
   jekyll-sitemap
 
 RUBY VERSION

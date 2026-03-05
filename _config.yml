@@ -37,3 +37,4 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-coffeescript
+  - jekyll-redirect-from
