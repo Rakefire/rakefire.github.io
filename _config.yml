@@ -14,7 +14,7 @@ address_2: Athens, OH 45701
 phone: (740) 561-1361
 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://www.rakefire.io" # the base hostname & protocol for your site
+url: "https://www.rakefire.io" # the base hostname & protocol for your site
 
 ga-code: UA-78007373-1
 
@@ -38,3 +38,13 @@ plugins:
   - jekyll-feed
   - jekyll-coffeescript
   - jekyll-redirect-from
+
+defaults:
+  - scope:
+      path: "fonts"
+    values:
+      sitemap: false
+  - scope:
+      path: "presentations/UntanglingMobileAndWebApplications-ILEAD2017.pdf"
+    values:
+      sitemap: false
