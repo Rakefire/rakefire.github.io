@@ -1,7 +1,9 @@
-_site/
+output/
+.bridgetown-cache/
 .sass-cache/
 
 .bundle/
 .DS_Store
-.jekyll-metadata
-.jekyll-cache/
+.migration-screenshots/
+.playwright-mcp/
+.ruby-lsp/
