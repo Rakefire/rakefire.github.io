@@ -1,10 +1,14 @@
 source "https://rubygems.org"
 
-gem "jekyll"
+gem "bridgetown", "~> 2.1"
+gem "bridgetown-feed", "~> 4.0"
+gem "bridgetown-sitemap", "~> 3.0"
+gem "bridgetown-seo-tag", "~> 7.0"
 
-group :jekyll_plugins do
-  gem "jekyll-sitemap"
-  gem "jekyll-feed"
-  gem "jekyll-coffeescript"
-  gem "jekyll-redirect-from"
+# SCSS compilation for src/css/style.scss when sources change.
+# Used by `rake css:build`; runtime build uses the precompiled CSS.
+gem "sass-embedded", "~> 1.0", require: false
+
+group :test, :development do
+  gem "puma", "~> 6.0"
 end

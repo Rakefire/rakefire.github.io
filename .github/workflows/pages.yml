@@ -29,13 +29,15 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Build with Jekyll
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+      - name: Build with Bridgetown
+        run: bundle exec bridgetown build --base_path "${{ steps.pages.outputs.base_path }}"
         env:
-          JEKYLL_ENV: production
+          BRIDGETOWN_ENV: production
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: output
 
   deploy:
     environment:

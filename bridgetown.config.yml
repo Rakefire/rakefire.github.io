@@ -1,0 +1,38 @@
+url: "https://www.rakefire.io"
+permalink: pretty
+template_engine: liquid
+components_dir: _includes
+
+include:
+  - .well-known
+  - CNAME
+
+exclude:
+  - "**/.DS_Store"
+
+defaults:
+  - scope:
+      path: "fonts"
+    values:
+      sitemap: false
+  - scope:
+      path: "presentations/UntanglingMobileAndWebApplications-ILEAD2017.pdf"
+    values:
+      sitemap: false
+
+# Site metadata (kept from Jekyll _config.yml so existing templates keep working)
+title: Rakefire
+email: contact@rakefire.io
+keywords: ruby on rails, web application development, web app, ohio, static web sites, jekyll, code, entrepreneur
+description: A Ruby on Rails agency and product studio. We build software for clients and ship our own SaaS — Causey and Stoked.
+logo: /images/rakefire_logo.png
+company: Rakefire LLC
+address_1: 29 East Carpenter
+address_2: Athens, OH 45701
+phone: (740) 561-1361
+ga-code: UA-78007373-1
+social:
+  twitter: rakefire
+  facebook: hirerakefire
+  github: rakefire
+testimonials: false
