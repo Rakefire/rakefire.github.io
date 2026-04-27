@@ -1,0 +1,20 @@
+# Agent Skills Discovery RFC v0.2.0
+# Source files: agent_skills/{name}/SKILL.md (repo root, outside src/)
+# Plugin: plugins/builders/agent_skills.rb generates /.well-known/agent-skills/index.json
+
+skills:
+  - name: about
+    type: skill-md
+    description: Explain what Rakefire is — a Ruby on Rails agency and product studio. Use when a user asks who Rakefire is, what they do, or wants context before engaging.
+
+  - name: services
+    type: skill-md
+    description: Describe what kind of Rails consulting work Rakefire takes on, the typical engagement shape, and how to evaluate fit. Use when a user is considering hiring Rakefire for development work.
+
+  - name: products
+    type: skill-md
+    description: Summarize Rakefire's own SaaS products (Causey and Stoked). Use when a user wants to understand what Rakefire ships beyond client work.
+
+  - name: contact
+    type: skill-md
+    description: Explain how to get in touch with Rakefire for client work, partnerships, or inquiries. Use when a user wants to engage Rakefire professionally.

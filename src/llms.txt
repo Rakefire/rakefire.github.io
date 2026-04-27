@@ -1,0 +1,27 @@
+---
+layout: none
+permalink: /llms.txt
+sitemap: false
+---
+# Rakefire
+
+> A Ruby on Rails agency and product studio. We build software for clients and ship our own SaaS — Causey and Stoked.
+
+Rakefire is a small, senior team based in Athens, Ohio. We've run since 2011, primarily on long-term client engagements and our own products. We pick boring, durable tech (Rails, Postgres, SQLite, Hotwire) and optimize for relationships that compound over years.
+
+Markdown versions of every page are available at `/path/index.md` (URL-suffix convention per llmstxt.org). The site also publishes structured agent skills at `/.well-known/agent-skills/index.json` and an API catalog at `/.well-known/api-catalog`.
+
+## Core pages
+
+- [Home](/index.md): A Ruby on Rails agency and product studio. The homepage is the canonical overview — work, products, and how to engage all live there.
+
+## Agent skills
+
+{% assign skills = site.data.agent_skills.skills %}
+{% for s in skills %}- [{{ s.name | replace: "-", " " | capitalize }}](/.well-known/agent-skills/{{ s.name }}/SKILL.md): {{ s.description }}
+{% endfor %}
+
+## Our products
+
+- [Causey](https://www.causey.app): Strategic planning software for nonprofits.
+- [Stoked](https://get.stokedhq.com): Peer-to-peer brand advocacy for DTC brands.

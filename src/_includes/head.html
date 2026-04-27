@@ -18,6 +18,11 @@
   <meta name="twitter:url" content="{{ site.url }}{{ page_url }}" />
   <meta name="twitter:card" content="summary" />
 
+  {% assign url_last_char = page_url | slice: -1, 1 %}
+  {% if url_last_char == "/" %}
+    <link rel="alternate" type="text/markdown" href="{{ page_url | append: 'index.md' }}" />
+  {% endif %}
+
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <link rel="shortcut icon" href="favicon.ico" />
   <link rel="apple-touch-icon-precomposed" href="apple-icon-precomposed.png" />
