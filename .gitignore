@@ -2,6 +2,7 @@ output/
 .bridgetown-cache/
 .sass-cache/
 
+node_modules/
 .bundle/
 .DS_Store
 .migration-screenshots/

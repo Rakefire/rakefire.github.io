@@ -1,4 +1,13 @@
-
+// ⚠️ REFERENCE ONLY — DO NOT EDIT EXPECTING A REBUILD ⚠️
+//
+// src/css/style.css is the byte-exact output of Jekyll's libsass build,
+// committed verbatim and served as-is. Editing this file does NOT change
+// the deployed CSS. CI does not rebuild from _sass/.
+//
+// `rake css:build` will compile from these sources via Dart Sass, but the
+// output will differ from the committed style.css due to Dart-vs-libsass
+// behavioral differences in this old Bootstrap. Diff carefully before
+// committing any rebuild.
 
 $font-primary: 'Source Sans Pro', Arial, sans-serif;
 

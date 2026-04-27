@@ -118,6 +118,7 @@ GEM
       bigdecimal
       rake (~> 13.3)
     hash_with_dot_access (2.2.0)
+    htmlcompressor (0.4.0)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     inclusive (1.1.0)
@@ -277,6 +278,7 @@ DEPENDENCIES
   bridgetown-feed (~> 4.0)
   bridgetown-seo-tag (~> 7.0)
   bridgetown-sitemap (~> 3.0)
+  htmlcompressor (~> 0.4)
   nokogiri (~> 1.13)
   puma (~> 6.0)
   reverse_markdown (~> 3.0)

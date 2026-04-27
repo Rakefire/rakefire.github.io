@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main, master]
+  schedule:
+    - cron: "0 6 * * *"  # Rebuild daily at 6am UTC
   workflow_dispatch:
 
 permissions:
@@ -22,14 +24,22 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "4.0"
+          ruby-version: "4.0.3"
           bundler-cache: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install npm dependencies
+        run: npm ci
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
 
-      - name: Build with Bridgetown
-        run: bundle exec bridgetown build
+      - name: Build site
+        run: bundle exec rake deploy
         env:
           BRIDGETOWN_ENV: production
 

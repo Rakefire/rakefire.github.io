@@ -13,6 +13,8 @@ gem "sass-embedded", "~> 1.0", require: false
 gem "nokogiri", "~> 1.13"
 gem "reverse_markdown", "~> 3.0"
 
+gem "htmlcompressor", "~> 0.4"
+
 group :test, :development do
   gem "puma", "~> 6.0"
 end
