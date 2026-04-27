@@ -30,7 +30,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Build with Bridgetown
-        run: bundle exec bridgetown build --base_path "${{ steps.pages.outputs.base_path }}"
+        run: bundle exec bridgetown build --base-path "${{ steps.pages.outputs.base_path }}"
         env:
           BRIDGETOWN_ENV: production
 
