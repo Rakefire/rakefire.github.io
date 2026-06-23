@@ -10,7 +10,7 @@ gem "bridgetown-seo-tag", "~> 7.0"
 gem "sass-embedded", "~> 1.0", require: false
 
 # HTML parsing + markdown conversion for the markdown_for_agents builder.
-gem "nokogiri", "~> 1.13"
+gem "nokogiri", "~> 1.19"
 gem "reverse_markdown", "~> 3.0"
 
 gem "htmlcompressor", "~> 0.4"
