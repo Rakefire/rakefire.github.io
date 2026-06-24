@@ -16,5 +16,5 @@ gem "reverse_markdown", "~> 3.0"
 gem "htmlcompressor", "~> 0.4"
 
 group :test, :development do
-  gem "puma", "~> 6.0"
+  gem "puma", "~> 7.2"
 end
