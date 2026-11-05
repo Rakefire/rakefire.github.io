@@ -50,7 +50,7 @@ Note: this repo runs **newer action versions** than its siblings —
 ## `build` job — environment setup
 
 1. `actions/checkout@v6`
-2. `ruby/setup-ruby@v1` — Ruby `4.0.3`, `bundler-cache: true`
+2. `ruby/setup-ruby@v1` — Ruby `4.0.9`, `bundler-cache: true`
    - Caches `vendor/bundle` keyed off `Gemfile.lock`
 3. `actions/setup-node@v4` — Node 20, `cache: npm`
 4. `npm ci` — installs esbuild + postcss toolchain
