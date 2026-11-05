@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "esbuild": "^0.28.1",
-    "glob": "^10.3.3",
+    "glob": "^14.0.3",
     "postcss": "^8.4.29",
     "postcss-import": "^15.1.0",
     "postcss-load-config": "^4.0.1",
