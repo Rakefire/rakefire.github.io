@@ -896,6 +896,49 @@ section .section-heading.text-center .subtext { text-align: center; }
   transform: translateY(-1px);
 }
 
+/* ─── 404 (src/404.html) — same dark night + flame glow as the hero ── */
+
+#not-found {
+  background:
+    radial-gradient(60% 80% at 78% 20%, rgba(255, 95, 59, 0.22), transparent 70%),
+    radial-gradient(50% 70% at 18% 78%, rgba(255, 175, 130, 0.10), transparent 70%),
+    var(--rf-night);
+  color: var(--rf-bg);
+  text-align: center;
+  padding: clamp(96px, 14vw, 168px) 0;
+  min-height: 70vh;
+}
+#not-found .nf-code {
+  font-family: 'Fraunces', serif;
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+  font-size: clamp(96px, 18vw, 220px);
+  line-height: 0.9;
+  margin: 0 0 16px;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 95, 59, 0.55);
+  letter-spacing: -0.04em;
+}
+#not-found h1 {
+  font-family: 'Fraunces', serif;
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+  font-weight: 350;
+  font-size: var(--rf-fs-section-h);
+  color: var(--rf-bg);
+  margin: 0 auto 20px;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+#not-found h1 em { color: var(--rf-accent); font-family: 'Fraunces', serif; }
+#not-found .nf-sub {
+  color: rgba(250, 247, 242, 0.78);
+  font-size: var(--rf-fs-hero-sub);
+  max-width: 44ch;
+  margin: 0 auto 36px;
+}
+#not-found .nf-actions { display: flex; gap: 12px 28px; justify-content: center; align-items: center; flex-wrap: wrap; }
+#not-found .nf-link { color: var(--rf-bg); font-weight: 600; border-bottom: 1px solid rgba(250, 247, 242, 0.3); }
+#not-found .nf-link:hover { color: var(--rf-accent); border-color: var(--rf-accent); }
+
 /* ─── Stoked widget (3rd-party launcher) ──────────────────────────── */
 
 /* The "Talk to a former client" pill — let it sit on the new bg colors */

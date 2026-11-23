@@ -26,6 +26,14 @@ BRIDGETOWN_ENV=production bundle exec bridgetown build
 
 Output goes to `output/`.
 
+## Tests
+
+Specs in `test/` use Bridgetown's Minitest harness (`bridgetown/test` + rack-test) against the built `output/`: page metadata, broken internal links, redirects, sitemap/robots/feed, and the agent-skills/llms.txt files.
+
+```sh
+bundle exec bridgetown build && bundle exec rake test
+```
+
 ## CSS
 
 `src/css/style.css` is checked in as the byte-exact output of the legacy Jekyll/libsass build, so the deployed stylesheet matches the pre-Bridgetown site. If you change anything under `_sass/`, regenerate it:
@@ -38,4 +46,4 @@ Note: `sass-embedded` (Dart Sass) emits a slightly different stylesheet than lib
 
 ## Deploy
 
-`.github/workflows/pages.yml` builds on every push to `main` and publishes to GitHub Pages (custom domain: `www.rakefire.io`). No manual deploy step.
+`.github/workflows/pages.yml` builds on every push to `main` and publishes to GitHub Pages (custom domain: `www.rakefire.io`). The specs run against that production build first; a failure blocks the deploy. IndexNow is pinged only after a successful deploy. Pull requests run the same build + specs without deploying or pinging. No manual deploy step.
