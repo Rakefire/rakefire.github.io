@@ -11,7 +11,7 @@ Rakefire builds two SaaS products in addition to client work. Both are run by th
 
 **URL:** https://www.causey.app
 
-Causey helps nonprofit leaders turn strategic plans into daily action. It sits between "the plan we wrote at the retreat" and "the work the team does every day" — making the plan a living artifact instead of a binder on a shelf.
+Causey helps nonprofit leaders put their strategic plan to work. It sits between "the plan we wrote at the retreat" and "the work the team does every day" — making the plan a living artifact instead of a binder on a shelf.
 
 Key capabilities:
 - Goals, strategies, action items, and metrics with clear ownership.

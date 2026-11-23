@@ -26,7 +26,7 @@ Rakefire is a small Ruby on Rails **agency and product studio** based in Athens,
 ## Our SaaS products
 
 ### Causey — https://www.causey.app
-Strategic planning software for nonprofits. Helps mission-driven organizations turn strategic plans into daily action with goal tracking, automated team check-ins, and board/funder reporting.
+Strategic planning software for nonprofits. Helps mission-driven organizations put their strategic plan to work with goal tracking, automated team check-ins, and board/funder reporting.
 
 ### Stoked — https://get.stokedhq.com
 Peer-to-peer brand advocacy platform for DTC brands. Connects prospective buyers with real product owners through private SMS/email conversations.
