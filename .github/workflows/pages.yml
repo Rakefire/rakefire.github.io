@@ -10,8 +10,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.ref) || 'pages' }}
@@ -20,6 +18,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    outputs:
+      sitemap_urls: ${{ steps.sitemap.outputs.urls }}
     steps:
       - uses: actions/checkout@v6
 
@@ -36,10 +36,6 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Setup Pages
-        if: github.event_name != 'pull_request'
-        uses: actions/configure-pages@v6
-
       - name: Build site
         run: bundle exec rake deploy
         env:
@@ -47,6 +43,11 @@ jobs:
 
       - name: Run specs
         run: bundle exec rake test
+
+      # Read from the fresh build, not the live site (Pages' CDN can serve a stale sitemap after deploy)
+      - name: Collect sitemap URLs for IndexNow
+        id: sitemap
+        run: echo "urls=$(bundle exec ruby -rrexml/document -rjson -e 'puts REXML::Document.new(File.read("output/sitemap.xml")).get_elements("urlset/url/loc").map(&:text).to_json')" >> "$GITHUB_OUTPUT"
 
       - name: Upload artifact
         if: github.event_name != 'pull_request'
@@ -61,22 +62,27 @@ jobs:
     runs-on: ubuntu-24.04
     needs: build
     if: github.event_name != 'pull_request'
+    permissions:
+      pages: write
+      id-token: write
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
 
-      # Runs only after Pages reports a successful deploy. Reads the live sitemap.
+      # Runs only after Pages reports a successful deploy. URLs come from the build job's sitemap.
       # ponytail: pings every sitemap URL on each deploy (incl. daily cron); diff against the previous sitemap if IndexNow starts throttling
       - name: Ping IndexNow
         continue-on-error: true
         env:
           INDEXNOW_KEY: d3edebe3-2774-4cd0-b3aa-780a8587c0a6
           SITE: https://www.rakefire.io
+          URLS: ${{ needs.build.outputs.sitemap_urls }}
         run: |
-          urls=$(curl -fsS "$SITE/sitemap.xml" | grep -o '<loc>[^<]*' | sed 's/<loc>//' | jq -Rsc 'split("\n") | map(select(length > 0))')
-          echo "Submitting: $urls"
-          jq -nc --arg key "$INDEXNOW_KEY" --arg site "$SITE" --argjson urls "$urls" \
+          set -o pipefail
+          if [ -z "$URLS" ] || [ "$URLS" = "[]" ]; then echo "::warning::No sitemap URLs from build; skipping IndexNow"; exit 0; fi
+          echo "Submitting: $URLS"
+          jq -nc --arg key "$INDEXNOW_KEY" --arg site "$SITE" --argjson urls "$URLS" \
             '{host: ($site | sub("https://"; "")), key: $key, keyLocation: "\($site)/\($key).txt", urlList: $urls}' \
           | curl -fsS -w 'IndexNow HTTP %{http_code}\n' -X POST https://api.indexnow.org/indexnow \
               -H 'Content-Type: application/json; charset=utf-8' --data-binary @-

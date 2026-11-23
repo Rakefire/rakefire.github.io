@@ -24,7 +24,8 @@ Single workflow: `.github/workflows/pages.yml`
 
 **Permissions**
 
-- `contents: read`, `pages: write`, `id-token: write`
+- Workflow: `contents: read` only
+- `deploy` job adds `pages: write`, `id-token: write` (PR builds never get them)
 
 **Concurrency**
 
@@ -36,14 +37,14 @@ Single workflow: `.github/workflows/pages.yml`
 
 ```
 build (ubuntu-latest)
-  └─ checkout → setup ruby/node → npm ci → rake deploy → rake test → upload artifact
+  └─ checkout → setup ruby/node → npm ci → rake deploy → rake test → collect sitemap URLs → upload artifact
 
 deploy (ubuntu-latest, needs: build)
   └─ actions/deploy-pages@v5 → ping IndexNow
 ```
 
 Note: this repo runs **newer action versions** than its siblings —
-`checkout@v6`, `configure-pages@v6`, `upload-pages-artifact@v5`,
+`checkout@v6`, `upload-pages-artifact@v5`,
 `deploy-pages@v5`.
 
 ---
@@ -55,7 +56,6 @@ Note: this repo runs **newer action versions** than its siblings —
    - Caches `vendor/bundle` keyed off `Gemfile.lock`
 3. `actions/setup-node@v4` — Node 20, `cache: npm`
 4. `npm ci` — installs esbuild + postcss toolchain
-5. `actions/configure-pages@v6`
 
 **No Tailwind, no Puppeteer.** Only the Bridgetown 2.x esbuild defaults.
 
@@ -182,7 +182,7 @@ Three different sources:
 
 SEO meta tags injected via `bridgetown-seo-tag` gem.
 
-The post-deploy IndexNow step reads the live `/sitemap.xml`.
+The build job extracts the `<loc>`s from `output/sitemap.xml` (REXML) into a job output for the IndexNow step.
 
 ---
 
@@ -190,7 +190,7 @@ The post-deploy IndexNow step reads the live `/sitemap.xml`.
 
 Last step of the `deploy` job, so it only runs after Pages reports success (never on PRs, never when specs fail).
 
-1. `curl` the live `https://www.rakefire.io/sitemap.xml`, collect `<loc>`s
+1. Take the URL list from the build job's `sitemap_urls` output (the fresh build, not the live site: Pages' CDN can serve a stale sitemap right after deploy). Empty list → skip with a warning
 2. POST to `https://api.indexnow.org/indexnow` (built with `jq`):
    ```json
    {
