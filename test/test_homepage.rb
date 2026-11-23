@@ -47,6 +47,10 @@ class TestHomepage < Bridgetown::Test
     expect(document.query_selector("a[href='mailto:contact@rakefire.io']")).not_nil?
   end
 
+  it "loads Plausible analytics" do
+    expect(document.query_selector("script[src^='https://plausible.io/js/pa-']")).not_nil?
+  end
+
   it "links to its markdown twin" do
     expect(document.query_selector("link[rel=alternate][type='text/markdown']")["href"]) == "/index.md"
   end
