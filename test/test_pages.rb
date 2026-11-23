@@ -58,7 +58,26 @@ class TestPages < Bridgetown::Test
     expect(heads.map(&:last).uniq.size) == heads.size
   end
 
-  it "returns 404 for unknown pages" do
-    expect(get("/this-page-does-not-exist/").status) == 404
+  # GitHub Pages serves output/404.html (with a 404 status) for any missing URL
+  describe "/404.html" do
+    before { html get("/404.html") }
+
+    it "is branded, noindex, and kept out of the sitemap" do
+      expect(last_response.status) == 200
+      expect(document.query_selector("h1").text).include? "smoke"
+      expect(meta("robots")) == "noindex"
+      expect(get("/sitemap.xml").body).exclude? "404"
+    end
+
+    it "only uses root-relative or absolute URLs (it's served at arbitrary depths)" do
+      relative = document.query_selector_all("a[href], link[href], script[src], img[src]")
+        .map { _1["href"] || _1["src"] }
+        .reject { _1.match?(%r{\A(/|https?:|mailto:|tel:|#)}) }
+      expect(relative).empty?
+    end
+
+    it "links somewhere that works" do
+      document.query_selector_all("#not-found a").each { expect(get(_1["href"].split("#").first).ok?).true?(_1["href"]) }
+    end
   end
 end

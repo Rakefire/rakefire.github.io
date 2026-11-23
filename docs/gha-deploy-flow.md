@@ -179,6 +179,7 @@ Three different sources:
 | `/sitemap.xml` | `bridgetown-sitemap` gem |
 | `/feed.xml` | `bridgetown-feed` gem |
 | `/robots.txt` | `src/robots.txt` (committed) |
+| `/404.html` | `src/404.html` — GitHub Pages serves it (status 404) for any missing URL |
 
 SEO meta tags injected via `bridgetown-seo-tag` gem.
 
