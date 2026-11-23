@@ -18,6 +18,7 @@ Single workflow: `.github/workflows/pages.yml`
 ## Triggers
 
 - `push` to `main` / `master`
+- `pull_request` — build + specs only; no upload, deploy, or IndexNow
 - `schedule: "0 6 * * *"` — daily 06:00 UTC rebuild
 - `workflow_dispatch` — manual
 
@@ -27,7 +28,7 @@ Single workflow: `.github/workflows/pages.yml`
 
 **Concurrency**
 
-- `group: pages`, `cancel-in-progress: false` — runs queue, never get killed mid-flight
+- `group: pages` (PRs: `pr-<ref>`), `cancel-in-progress: false` — deploys queue, never get killed mid-flight; PRs can't bump a queued deploy
 
 ---
 
@@ -35,10 +36,10 @@ Single workflow: `.github/workflows/pages.yml`
 
 ```
 build (ubuntu-latest)
-  └─ checkout → setup ruby/node → npm ci → rake deploy → upload artifact
+  └─ checkout → setup ruby/node → npm ci → rake deploy → rake test → upload artifact
 
 deploy (ubuntu-latest, needs: build)
-  └─ actions/deploy-pages@v5
+  └─ actions/deploy-pages@v5 → ping IndexNow
 ```
 
 Note: this repo runs **newer action versions** than its siblings —
@@ -125,7 +126,6 @@ Generates `output/` from `src/`.
 | `markdown_for_agents` | Emits markdown twins of HTML pages |
 | `redirects` | Generates redirect HTML files from data |
 | `html_minifier` | `htmlcompressor` rewrites every `output/**/*.html` |
-| `indexnow` | Pings IndexNow API (production only) |
 
 ---
 
@@ -182,22 +182,16 @@ Three different sources:
 
 SEO meta tags injected via `bridgetown-seo-tag` gem.
 
-The IndexNow builder reads `output/sitemap.xml` post-write.
+The post-deploy IndexNow step reads the live `/sitemap.xml`.
 
 ---
 
 ## IndexNow submission
 
-`plugins/builders/indexnow.rb` — fires on `:post_write` when:
+Last step of the `deploy` job, so it only runs after Pages reports success (never on PRs, never when specs fail).
 
-- `BRIDGETOWN_ENV == "production"`, **or**
-- `INDEXNOW=true`
-
-**Flow**
-
-1. Read `output/sitemap.xml`
-2. Parse with `REXML`, collect `urlset/url/loc`
-3. POST to `https://api.indexnow.org/indexnow`:
+1. `curl` the live `https://www.rakefire.io/sitemap.xml`, collect `<loc>`s
+2. POST to `https://api.indexnow.org/indexnow` (built with `jq`):
    ```json
    {
      "host": "www.rakefire.io",
@@ -206,8 +200,9 @@ The IndexNow builder reads `output/sitemap.xml` post-write.
      "urlList": [...]
    }
    ```
-4. 10s open/read timeouts
-5. Exceptions caught and logged — never fail the build
+3. `continue-on-error: true` — a failed ping never marks the deploy red
+
+Key lives in the step's `INDEXNOW_KEY` env; a spec checks it matches the served key file.
 
 Key file: `src/d3edebe3-2774-4cd0-b3aa-780a8587c0a6.txt`
 
@@ -266,10 +261,10 @@ The committed CSS is what makes this site cheap to rebuild.
 
 ## Notable per-run side effects
 
-- **IndexNow** — single POST per production / cron run
+- **IndexNow** — single POST after each successful deploy (push / cron / manual)
 - **HTML minifier** — every `output/**/*.html` rewritten in place
 - **Full rebuild** every time — no incremental Bridgetown
-- **Build failures in IndexNow are swallowed** — logged, never raised
+- **IndexNow failures are swallowed** — step is `continue-on-error`
 - **Concurrency queue** — pushes during a run wait, don't cancel
 - **CSS is whatever was last committed** — drift between `_sass/` and `src/css/style.css` is silent unless someone runs `rake css:build`
 
@@ -302,7 +297,6 @@ plugins/builders/
   ├── agent_skills.rb
   ├── api_catalog.rb
   ├── html_minifier.rb               # post-build compression
-  ├── indexnow.rb                    # IndexNow submission
   ├── markdown_for_agents.rb
   └── redirects.rb
 src/robots.txt

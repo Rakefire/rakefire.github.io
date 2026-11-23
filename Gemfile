@@ -18,3 +18,9 @@ gem "htmlcompressor", "~> 0.4"
 group :test, :development do
   gem "puma", "~> 7.2"
 end
+
+group :test do
+  gem "minitest"
+  gem "rack-test"
+  gem "nokolexbor"
+end

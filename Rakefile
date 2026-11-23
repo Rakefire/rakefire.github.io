@@ -53,3 +53,8 @@ namespace :css do
     puts "Wrote #{out} (#{result.css.bytesize} bytes)"
   end
 end
+
+# Specs run against the already-built output/ (CI tests the exact production
+# build it deploys). Locally: `bin/bridgetown build && bundle exec rake test`.
+require "minitest/test_task"
+Minitest::TestTask.create(:test) { |t| t.warning = false }

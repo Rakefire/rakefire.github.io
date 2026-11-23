@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main, master]
+  pull_request:
   schedule:
     - cron: "0 6 * * *"  # Rebuild daily at 6am UTC
   workflow_dispatch:
@@ -13,7 +14,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.ref) || 'pages' }}
   cancel-in-progress: false
 
 jobs:
@@ -36,6 +37,7 @@ jobs:
         run: npm ci
 
       - name: Setup Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v6
 
       - name: Build site
@@ -43,7 +45,11 @@ jobs:
         env:
           BRIDGETOWN_ENV: production
 
+      - name: Run specs
+        run: bundle exec rake test
+
       - name: Upload artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5
         with:
           path: output
@@ -54,7 +60,23 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
     needs: build
+    if: github.event_name != 'pull_request'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+      # Runs only after Pages reports a successful deploy. Reads the live sitemap.
+      # ponytail: pings every sitemap URL on each deploy (incl. daily cron); diff against the previous sitemap if IndexNow starts throttling
+      - name: Ping IndexNow
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: d3edebe3-2774-4cd0-b3aa-780a8587c0a6
+          SITE: https://www.rakefire.io
+        run: |
+          urls=$(curl -fsS "$SITE/sitemap.xml" | grep -o '<loc>[^<]*' | sed 's/<loc>//' | jq -Rsc 'split("\n") | map(select(length > 0))')
+          echo "Submitting: $urls"
+          jq -nc --arg key "$INDEXNOW_KEY" --arg site "$SITE" --argjson urls "$urls" \
+            '{host: ($site | sub("https://"; "")), key: $key, keyLocation: "\($site)/\($key).txt", urlList: $urls}' \
+          | curl -fsS -w 'IndexNow HTTP %{http_code}\n' -X POST https://api.indexnow.org/indexnow \
+              -H 'Content-Type: application/json; charset=utf-8' --data-binary @-
