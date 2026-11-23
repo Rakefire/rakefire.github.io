@@ -10,6 +10,11 @@ class TestPages < Bridgetown::Test
         expect(document.query_selector("title").text).not_empty?
         expect(meta("description").to_s).not_empty?
         expect(meta("og:url")) == "#{SITE_URL}#{path}"
+        expect(document.query_selector("link[rel=canonical]")["href"]) == "#{SITE_URL}#{path}"
+      end
+
+      it "has exactly one h1" do
+        expect(document.query_selector_all("h1").size) == 1
       end
 
       it "gives every image alt text" do
@@ -45,6 +50,12 @@ class TestPages < Bridgetown::Test
       html get("/map-demo/")
       expect(meta("robots")).include? "noindex"
     end
+  end
+
+  it "gives every page a unique title and description" do
+    heads = self.class.html_pages.map { html(get(_1)) && [document.query_selector("title").text, meta("description")] }
+    expect(heads.map(&:first).uniq.size) == heads.size
+    expect(heads.map(&:last).uniq.size) == heads.size
   end
 
   it "returns 404 for unknown pages" do

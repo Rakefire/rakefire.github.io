@@ -298,7 +298,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  bridgetown (~> 2.1)
+  bridgetown (~> 2.2)
   bridgetown-feed (~> 4.0)
   bridgetown-seo-tag (~> 7.0)
   bridgetown-sitemap (~> 3.0)

@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "bridgetown", "~> 2.1"
+gem "bridgetown", "~> 2.2"
 gem "bridgetown-feed", "~> 4.0"
 gem "bridgetown-sitemap", "~> 3.0"
 gem "bridgetown-seo-tag", "~> 7.0"
